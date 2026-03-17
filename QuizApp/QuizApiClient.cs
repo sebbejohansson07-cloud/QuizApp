@@ -1,5 +1,6 @@
-﻿using System.Net.Http.Json;
-using System.Text.Json.Serialization;
+﻿using QuizApp.Integration;
+using QuizApp.Models;
+using System.Net.Http.Json;
 
 namespace QuizApp;
 
@@ -57,44 +58,3 @@ public class QuizApiClient(HttpClient httpClient) : IDisposable
         return System.Net.WebUtility.HtmlDecode(input);
     }
 }
-
-
-
-
-public record QuizApiResponse(
-    int ResponseCode,
-    List<QuizQuestion> Results
-);
-
-public record QuizQuestion(
-    string Category,
-    string Type,
-    string Difficulty,
-    string Question,
-    string CorrectAnswer,
-    List<string> IncorrectAnswers
-);
-
-
-public record OpenTriviaQuizResponse(
-    [property: JsonPropertyName("response_code")] int ResponseCode,
-    [property: JsonPropertyName("results")] List<OpenTriviaQuestionDto> Results
-);
-
-public record OpenTriviaCategoriesResponse(
-    [property: JsonPropertyName("trivia_categories")] List<OpenTriviaCategoryDto> TriviaCategories
-);
-
-public record OpenTriviaCategoryDto(
-    [property: JsonPropertyName("id")] int Id,
-    [property: JsonPropertyName("name")] string Name
-);
-
-public record OpenTriviaQuestionDto(
-    [property: JsonPropertyName("type")] string Type,
-    [property: JsonPropertyName("difficulty")] string Difficulty,
-    [property: JsonPropertyName("category")] string Category,
-    [property: JsonPropertyName("question")] string Question,
-    [property: JsonPropertyName("correct_answer")] string CorrectAnswer,
-    [property: JsonPropertyName("incorrect_answers")] List<string> IncorrectAnswers
-);

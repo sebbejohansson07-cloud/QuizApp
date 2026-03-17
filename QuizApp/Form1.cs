@@ -21,10 +21,10 @@ namespace QuizApp
             foreach(var question in await questions!)
             {
                 listBox1.Items.Add(question.Question);
-                listBox1.Items.Add("-- " + question.CorrectAnswer);
+                listBox1.Items.Add("correct: " + question.CorrectAnswer);
                 foreach(var incorrect in question.IncorrectAnswers)
                 {
-                    listBox1.Items.Add("---- " + incorrect);
+                    listBox1.Items.Add("incorrect: " + incorrect);
                 }
             }
         }
