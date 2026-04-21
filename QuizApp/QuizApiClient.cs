@@ -6,7 +6,7 @@ namespace QuizApp;
 
 public class QuizApiClient(HttpClient httpClient) : IDisposable
 {
-
+    
     public static QuizApiClient Create()
     {
         var httpClient = new HttpClient
